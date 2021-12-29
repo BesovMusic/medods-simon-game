@@ -116,7 +116,6 @@ export default {
 		},
 		setUserSequence(value) {
 			this.userSequence.push(value);
-			console.log(this.userSequence);
 		},
 		setIsFail(id) {
 			if (this.gameSequence[this.userSequence.length - 1] !== id) {
@@ -194,19 +193,19 @@ $btnGap: 5px;
 	border-radius: 10px;
 	transition: 0.15s ease-in opacity;
 	&--topLeft {
-		background-color: yellow;
+		background-color: #00caba;
 		border-top-left-radius: 100%;
 	}
 	&--topRight {
-		background-color: green;
+		background-color: #ec6769;
 		border-top-right-radius: 100%;
 	}
 	&--botLeft {
-		background-color: blue;
+		background-color: #f9e87e;
 		border-bottom-left-radius: 100%;
 	}
 	&--botRight {
-		background-color: red;
+		background-color: #00acd1;
 		border-bottom-right-radius: 100%;
 	}
 }
@@ -230,8 +229,9 @@ $btnGap: 5px;
 	height: calc(50% - $btnGap);
 	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 	font-weight: bold;
-	background-color: white;
-	border: 2px solid black;
+	background-color: #13212e;
+	color: #fff;
+	border: 2px solid #fff;
 	cursor: pointer;
 	&:last-child {
 		border-radius: 0 0 50% 50% / 0 0 100% 100%;
