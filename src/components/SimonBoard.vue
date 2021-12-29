@@ -39,6 +39,7 @@ export default {
 				{ id: 3, class: 'sButton--botRight', active: false },
 			],
 			gameSequence: [],
+			userSequence: [],
 			levels: ['easy', 'medium', 'hard'],
 			level: 0,
 			sounds: [
@@ -50,24 +51,16 @@ export default {
 		};
 	},
 	computed: {
-		userSequence() {
-			return [];
-		},
-		gameButtons() {
-			return this.sButtons.map((gameButton) => {
-				return gameButton;
-			});
-		},
 		timeout() {
 			switch (this.level) {
 				case 0:
-					return 1.5;
+					return 1500;
 				case 1:
-					return 1;
+					return 1000;
 				case 2:
-					return 0.4;
+					return 400;
 				default:
-					return 1.5;
+					return 1500;
 			}
 		},
 	},
@@ -142,14 +135,14 @@ export default {
 			this.isButtonActive = value;
 		},
 		activateButton(value) {
-			this.gameButtons.forEach((gameButton) => {
+			this.sButtons.forEach((gameButton) => {
 				if (gameButton.id === value) {
-					this.gameButtons[gameButton.id].active = true;
+					this.sButtons[gameButton.id].active = true;
 					this.playAudio(gameButton.id);
 					setTimeout(() => {
-						this.gameButtons[gameButton.id].active = false;
-					}, (this.timeout / 2) * 1000);
-				} else this.gameButtons[gameButton.id].active = false;
+						this.sButtons[gameButton.id].active = false;
+					}, this.timeout / 2);
+				} else this.sButtons[gameButton.id].active = false;
 			});
 		},
 		activateButtons() {
@@ -157,11 +150,11 @@ export default {
 			this.gameSequence.forEach((number, index) => {
 				setTimeout(() => {
 					this.activateButton(number);
-				}, this.timeout * 1000 * (index + 1));
+				}, this.timeout * (index + 1));
 			});
 			setTimeout(() => {
 				this.setIsButtonActive(false);
-			}, this.timeout * 1000 * (this.gameSequence.length + 0.6));
+			}, this.timeout * (this.gameSequence.length + 0.6));
 		},
 	},
 };
