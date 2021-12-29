@@ -2,13 +2,13 @@
 	<div class="screenWrapper">
 		<h1>Simon Game!</h1>
 		<div class="sGameWrapper">
-			<div
+			<button
 				class="sButton"
 				v-for="sButton in sButtons"
 				:key="sButton.id"
 				:class="{ [sButton.class]: true, active: sButton.active }"
 				@click="buttonClicked(sButton.id)"
-			></div>
+			></button>
 
 			<div class="scoreScreen">
 				<span v-show="isGameOn">Round: {{ round }}</span>
@@ -161,9 +161,12 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 $btnGap: 5px;
 * {
 	--btnSize: 250px;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .screenWrapper {
@@ -182,7 +185,6 @@ $btnGap: 5px;
 	height: 100%;
 	width: calc((var(--btnSize) * 2) + $btnGap);
 	gap: $btnGap;
-
 	position: relative;
 }
 .sButton {
@@ -190,7 +192,6 @@ $btnGap: 5px;
 	height: var(--btnSize);
 	border: 2px solid black;
 	border-radius: 10px;
-	cursor: pointer;
 	transition: 0.15s ease-in opacity;
 	&--topLeft {
 		background-color: yellow;
@@ -225,8 +226,16 @@ $btnGap: 5px;
 	align-items: center;
 }
 .menuBtn {
-	width: 80%;
-	margin-top: $btnGap;
+	width: calc(100% - $btnGap * 2);
+	height: calc(50% - $btnGap);
+	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+	font-weight: bold;
+	background-color: white;
+	border: 2px solid black;
+	cursor: pointer;
+	&:last-child {
+		border-radius: 0 0 50% 50% / 0 0 100% 100%;
+	}
 	&--green {
 		background-color: lightgreen;
 	}
